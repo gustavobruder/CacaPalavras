@@ -15,7 +15,7 @@ namespace CacaPalavras.UnitTests
             var matriz = matrizLetra.Matriz;
 
             var buscador = new BuscadorPalavra();
-            var encontrouPalavra = buscador.BuscarPalavraEsquerdaParaDireita(matriz, palavras);
+            var encontrouPalavra = buscador.BuscarPalavraEsquerdaParaDireita(matriz, palavras, 9, 0);
 
             encontrouPalavra.Should().BeTrue();
         }
@@ -29,7 +29,7 @@ namespace CacaPalavras.UnitTests
             var matriz = matrizLetra.Matriz;
 
             var buscador = new BuscadorPalavra();
-            var encontrouPalavra = buscador.BuscarPalavraDireitaParaEsquerda(matriz, palavras);
+            var encontrouPalavra = buscador.BuscarPalavraDireitaParaEsquerda(matriz, palavras, 0, 4);
 
             encontrouPalavra.Should().BeTrue();
         }
@@ -43,7 +43,7 @@ namespace CacaPalavras.UnitTests
             var matriz = matrizLetra.Matriz;
 
             var buscador = new BuscadorPalavra();
-            var encontrouPalavra = buscador.BuscarPalavraCimaParaBaixo(matriz, palavras);
+            var encontrouPalavra = buscador.BuscarPalavraCimaParaBaixo(matriz, palavras, 1, 0);
 
             encontrouPalavra.Should().BeTrue();
         }
@@ -57,7 +57,23 @@ namespace CacaPalavras.UnitTests
             var matriz = matrizLetra.Matriz;
 
             var buscador = new BuscadorPalavra();
-            var encontrouPalavra = buscador.BuscarPalavraBaixoParaCima(matriz, palavras);
+            var encontrouPalavra = buscador.BuscarPalavraBaixoParaCima(matriz, palavras, 8, 3);
+
+            encontrouPalavra.Should().BeTrue();
+        }
+
+        [Theory]
+        [InlineData("VETOR")]
+        [InlineData("MAP")]
+        [InlineData("IFELSE")]
+        [InlineData("CLASSE")]
+        public void Deve_conseguir_encontrar_uma_palavra_na_matriz(string palavra)
+        {
+            var matrizLetra = new MatrizLetras();
+            var matriz = matrizLetra.Matriz;
+
+            var buscador = new BuscadorPalavra();
+            var encontrouPalavra = buscador.BuscarPalavra(matriz, palavra);
 
             encontrouPalavra.Should().BeTrue();
         }
