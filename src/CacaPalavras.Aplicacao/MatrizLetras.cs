@@ -1,16 +1,24 @@
-﻿namespace CacaPalavras.Aplicacao
+﻿using System;
+using CacaPalavras.Aplicacao.Extensions;
+
+namespace CacaPalavras.Aplicacao
 {
     public class MatrizLetras
     {
-        private readonly short _mapaQtdLinha = 10;
-        private readonly short _mapaQtdColuna = 5;
+        private readonly short _quantidadeLinhas;
+        private readonly short _quantidadeColunas;
         private readonly char[,] _matriz;
 
+        public short QuantidadeLinhas => _quantidadeLinhas;
+        public short QuantidadeColunas => _quantidadeColunas;
         public char[,] Matriz => _matriz;
 
         public MatrizLetras()
         {
-            _matriz = new char[_mapaQtdLinha, _mapaQtdColuna];
+            _quantidadeLinhas = 10;
+            _quantidadeColunas = 5;
+            _matriz = new char[_quantidadeLinhas, _quantidadeColunas];
+
             DefinirValoresMatriz();
         }
 
@@ -25,6 +33,17 @@
             _matriz[7, 0]='A'; _matriz[7, 1]='K'; _matriz[7, 2]='U'; _matriz[7, 3]='L'; _matriz[7, 4]='G';
             _matriz[8, 0]='X'; _matriz[8, 1]='H'; _matriz[8, 2]='K'; _matriz[8, 3]='C'; _matriz[8, 4]='G';
             _matriz[9, 0]='V'; _matriz[9, 1]='E'; _matriz[9, 2]='T'; _matriz[9, 3]='O'; _matriz[9, 4]='R';
+        }
+
+        public void MostrarMapa()
+        {
+            for (var i = 0; i < _quantidadeLinhas; i++)
+            {
+                var linha = _matriz.GetRow(i);
+                Console.WriteLine("--------------------");
+                Console.WriteLine($"| {string.Join(" | ", linha)} |");
+            }
+            Console.WriteLine("--------------------");
         }
     }
 }
